@@ -44,7 +44,10 @@ const NewPost = (props) => {
         if(submitted){
             isSubmitted = <Redirect to ="/"/>
         }
-
+        let disabled = true;
+        if(title && content && author){
+            disabled = false
+        }
         
         
     
@@ -101,6 +104,7 @@ const NewPost = (props) => {
 
                 <CustomButton color = "primary"
                     clicked = {postDataHandler}
+                    disabled = {disabled}
                 >Add Post </CustomButton>
                 </div>
                 </CardBody>
