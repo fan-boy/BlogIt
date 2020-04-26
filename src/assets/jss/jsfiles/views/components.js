@@ -34,6 +34,9 @@ const componentsStyle = {
   },
   textCenter: {
     textAlign: "center"
+  },
+  pagination:{
+    textAlign: "center"
   }
 };
 

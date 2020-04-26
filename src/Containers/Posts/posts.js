@@ -8,6 +8,7 @@ import Post from '../../Components/Post/Post';
 import Parallax from '../../Components/UiComponents/Parallax/Parallax';
 import GridContainer from '../../Components/UiComponents/Grid/GridContainer';
 import GridItem from '../../Components/UiComponents/Grid/GridItem';
+import Pagination from '../../Components/UiComponents/Pagination/Pagination';
 import styles from '../../assets/jss/jsfiles/views/components';
 
 const useStyles = makeStyles(styles);
@@ -17,8 +18,13 @@ const Posts = (props) =>{
     
     const classes = useStyles();
     const [ posts,setPosts] = useState();
+    const [loading,setLoading] = useState(false);
+    const [currentPage,setCurrentPage] = useState(1);
+    const [postsPerPage,setPostsPerPage] = useState(5);
     useEffect(() =>{
-        axios.get('https://blogit-605f1.firebaseio.com/posts.json')
+      setLoading(true);
+      const fetchPosts = async () =>{
+        await axios.get('https://blogit-605f1.firebaseio.com/posts.json')
         .then(
             response => {
                 const posts = response.data;
@@ -31,20 +37,43 @@ const Posts = (props) =>{
                 }
                 
                 setPosts(updatedPosts);
+                setLoading(false);
                 console.log(response);
             }
-        );
-    })
+        ).catch(err => setLoading(false));
+    }
+    fetchPosts();
+  },[]);
     const onSelectedhandler = (id) =>{
         props.history.push({pathname:'/fullpost/' +id });
     }
 
-        let displayPosts = null;
-        if(posts && posts != null){
-            displayPosts = posts.map(x => {
+        const indexOfLastPost = currentPage * postsPerPage;
+        const indexOfFirstPost = indexOfLastPost - postsPerPage;
+        let currentPosts = null;
+        let pageNumbers = [];
+        if(posts && posts!=null){
+          currentPosts = posts.slice(indexOfFirstPost,indexOfLastPost);
+          for(let i = 1;i<= Math.ceil(posts.length/postsPerPage);i++){
+          if(currentPage === i){
+          pageNumbers.push({active: true, text: i});
+          }else{
+            pageNumbers.push({text:i});
+          }
+          
+        }
+        }
+
+        
+        const paginate = pageNumber => setCurrentPage(pageNumber);
+        
+
+        let displayPosts = "Loading...";
+        if(currentPosts && currentPosts != null){
+            displayPosts = currentPosts.map(x => {
             return( 
             //<Link to = {"/fullpost/" + x.id} key = {x.id}> 
-                <Post headerColor="primary" title = {x.title} content = {x.content} author = {x.author} clicked = {() => onSelectedhandler(x.id)}/>
+                <Post headerColor="primary"  title = {x.title} content = {x.content} author = {x.author} clicked = {() => onSelectedhandler(x.id)}/>
               //  </Link>
               )
         })
@@ -72,7 +101,11 @@ const Posts = (props) =>{
            
             
                     {displayPosts}
+                    
         </section>
+        <div className={classes.pagination}>
+        <Pagination pages = {pageNumbers} color = "primary" clicked = {paginate}/>
+        </div>
         </div>
         </div>
         
