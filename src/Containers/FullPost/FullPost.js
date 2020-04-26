@@ -29,9 +29,7 @@ class FullPost extends Component {
             <div className="FullPost">
         <h1>{this.state.loadedPost.title}</h1>
         <div dangerouslySetInnerHTML={ { __html:this.state.loadedPost.content}}></div> 
-                <div className="Edit">
-                    <button className="Delete">Delete</button>
-                </div>
+                
             </div>
 
         );
