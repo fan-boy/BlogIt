@@ -28,11 +28,19 @@ export default function HeaderLinks(props) {
   return (
     <List className={classes.list}>
       <ListItem className={classes.listItem}>
-          <NavLink to ="/" exact>  Home</NavLink>
+          <NavLink to ="/" exact> 
+          <Button color = "transparent">  
+            Home
+          </Button>
+          </NavLink>
         
       </ListItem>
       <ListItem className={classes.listItem}>
-      <NavLink to = '/newPost'>New Post</NavLink>
+      <NavLink to = '/newPost'>
+        <Button color = "transparent">
+        New Post
+        </Button>
+        </NavLink>
       </ListItem>
     </List>
   );
