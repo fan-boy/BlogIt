@@ -10,11 +10,12 @@ import GridContainer from '../../Components/UiComponents/Grid/GridContainer';
 import GridItem from '../../Components/UiComponents/Grid/GridItem';
 import Pagination from '../../Components/UiComponents/Pagination/Pagination';
 import styles from '../../assets/jss/jsfiles/views/components';
+import { Card } from '@material-ui/core';
 
 const useStyles = makeStyles(styles);
 
 
-const Posts = (props) =>{
+const  Posts = (props) =>{
     
     const classes = useStyles();
     const [ posts,setPosts] = useState();
@@ -73,7 +74,7 @@ const Posts = (props) =>{
             displayPosts = currentPosts.map(x => {
             return( 
             //<Link to = {"/fullpost/" + x.id} key = {x.id}> 
-                <Post headerColor="primary"  title = {x.title} content = {x.content} author = {x.author} clicked = {() => onSelectedhandler(x.id)}/>
+                <Post headerColor="warning" hover title = {x.title} content = {x.content} author = {x.author} clicked = {() => onSelectedhandler(x.id)}/>
               //  </Link>
               )
         })
@@ -89,24 +90,24 @@ const Posts = (props) =>{
               <div className={classes.brand}>
                 <h1 className={classes.title}>BlogIt</h1>
                 <h3 className={classes.subtitle}>
-                  A Badass Material-UI Kit based on Material Design.
+                  A React Based Blog Application!
                 </h3>
               </div>
             </GridItem>
           </GridContainer>
         </div>
       </Parallax>
-      <div className={classNames(classes.main, classes.mainRaised)}>
          <section className="Posts">
            
             
                     {displayPosts}
                     
         </section>
+        <Card>
         <div className={classes.pagination}>
-        <Pagination pages = {pageNumbers} color = "primary" clicked = {paginate}/>
+        <Pagination pages = {pageNumbers} color = "warning" clicked = {paginate}/>
         </div>
-        </div>
+        </Card>  
         </div>
         
         );    

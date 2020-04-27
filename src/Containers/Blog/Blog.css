@@ -7,6 +7,11 @@
     
 }
 
+.Blog{
+    height: 100%;
+    background-color: #00a3f0;
+}
+
 .Blog ul {
     list-style: none;
     margin: 0;

@@ -18,10 +18,13 @@ const useStyles = makeStyles(styles);
 
 const Post = (props) => {
     const classes = useStyles();
-  const { headerColor, plainTabs, content, title, rtlActive,author,clicked } = props;
+  const { headerColor, plainTabs, content, title, rtlActive,author,clicked,hover } = props;
   const cardTitle = classNames({
     [classes.cardTitle]: true,
-    [classes.cardTitleRTL]: rtlActive
+    [classes.cardTitleRTL]: rtlActive    
+  });
+  const cardHover = classNames({
+    [classes.cardHover]: hover
   });
     return(
 
@@ -29,9 +32,9 @@ const Post = (props) => {
         <CardHeader color = {headerColor} plain = {plainTabs}>
             {title !== undefined ? <div className={cardTitle}>{title}</div> : null}
         </CardHeader>
-        <div onClick = {clicked} alt="Click to Open">
-            <CardBody>
-            <div dangerouslySetInnerHTML = { { __html:content}}></div>
+        <div onClick = {clicked} alt="Click to Open" className={cardHover}  >
+            <CardBody >
+            <div dangerouslySetInnerHTML = { { __html:content}} ></div>
             </CardBody>
 
             <CardFooter>

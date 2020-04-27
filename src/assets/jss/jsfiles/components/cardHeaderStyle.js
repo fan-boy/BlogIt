@@ -3,14 +3,15 @@ import {
   successCardHeader,
   dangerCardHeader,
   infoCardHeader,
-  primaryCardHeader
+  primaryCardHeader,
+  secondaryCardHeader,
+  tertiaryCardHeader
 } from "../../material-kit-react";
 const cardHeaderStyle = {
   cardHeader: {
     borderRadius: "3px",
-    padding: "1rem 15px",
+    padding: "5px",
     marginLeft: "15px",
-    marginRight: "15px",
     marginTop: "-30px",
     border: "0",
     width:"200px",
@@ -24,7 +25,9 @@ const cardHeaderStyle = {
   successCardHeader,
   dangerCardHeader,
   infoCardHeader,
-  primaryCardHeader
+  primaryCardHeader,
+  secondaryCardHeader,
+  tertiaryCardHeader
 };
 
 export default cardHeaderStyle;

@@ -8,13 +8,13 @@ import { makeStyles } from "@material-ui/core/styles";
 import './NewPost.css';
 import Axios from 'axios';
 import CKEditor from '@ckeditor/ckeditor5-react';
-import InlineEditor from '@ckeditor/ckeditor5-build-inline';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import CustomInput from '../../Components/UiComponents/CustomInput/CustomInput';
 import Card from '../../Components/UiComponents/Card/Card';
 import CardBody from '../../Components/UiComponents/Card/CardBody';
 import CustomButton from '../../Components/UiComponents/CustomButtons/Button';
 
-import styles from '../../assets/jss/jsfiles/components/typographyStyle';
+import styles from '../../assets/jss/jsfiles/views/NewPost';
 
 const useStyles = makeStyles(styles);
 
@@ -53,15 +53,14 @@ const NewPost = (props) => {
     
         return (
      
-
-            <div className="NewPost">
+            <div className={classes.Parent}>
+                
+            <div className={classes.NewPost}>
                 {isSubmitted}
-                <Card>
-                <div className = {classes.typo}>    
+                <Card >
                 <h1>Add a Post</h1>
-                </div>
                 <CardBody>
-                <div className = "ContentSizing">
+                <div className = {classes.ContentSizing}>
                 <CustomInput
                 labelText="Title"
                 id="float"
@@ -71,12 +70,13 @@ const NewPost = (props) => {
                 changed = {(event) => setTitle(event.target.value)}
                 />
                 <label>Content</label>
-                <div className="CkEditorSizing">
+                <div className={classes.CkEditorSizing}>
                 <CKEditor
-                    editor={ InlineEditor }
+                    editor={ ClassicEditor }
                     label = "Enter Text Here"
                     onInit={ editor => {
                         // You can store the "editor" and use when it is needed.
+                        
                         console.log( 'Editor is ready to use!', editor );
                     } }
                     onChange={ ( event, editor ) => {
@@ -109,6 +109,7 @@ const NewPost = (props) => {
                 </div>
                 </CardBody>
                 </Card>
+            </div>
             </div>
         );
     }

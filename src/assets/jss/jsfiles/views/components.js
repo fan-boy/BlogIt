@@ -36,7 +36,8 @@ const componentsStyle = {
     textAlign: "center"
   },
   pagination:{
-    textAlign: "center"
+    textAlign: "center",
+    color:"#eee"
   }
 };
 

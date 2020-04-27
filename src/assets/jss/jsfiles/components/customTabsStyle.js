@@ -2,7 +2,19 @@ const customTabsStyle = {
   cardTitle: {
     float: "left",
     padding: "10px 10px 10px 0px",
-    lineHeight: "24px"
+    lineHeight: "24px",
+    
+  },
+  cardHover: {
+   
+    "&:hover,&:focus": {
+      zIndex: "3",
+      backgroundColor: "#C0DDF5",
+      borderColor: "#ddd"
+    },
+    "&:hover": {
+      cursor: "pointer"
+    }
   },
   cardTitleRTL: {
     float: "right",
