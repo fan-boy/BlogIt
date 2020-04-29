@@ -14,9 +14,10 @@ const useStyles = makeStyles(styles);
 
 export default function CardBody(props) {
   const classes = useStyles();
-  const { className, children, ...rest } = props;
+  const { className, children,allPosts, ...rest } = props;
   const cardBodyClasses = classNames({
     [classes.cardBody]: true,
+    [classes.allPostPageStyle]:allPosts,
     [className]: className !== undefined
   });
   return (
