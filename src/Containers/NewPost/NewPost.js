@@ -13,6 +13,8 @@ import CustomInput from '../../Components/UiComponents/CustomInput/CustomInput';
 import Card from '../../Components/UiComponents/Card/Card';
 import CardBody from '../../Components/UiComponents/Card/CardBody';
 import CustomButton from '../../Components/UiComponents/CustomButtons/Button';
+import ReactTagInput from "@pathofdev/react-tag-input";
+import "@pathofdev/react-tag-input/build/index.css";
 
 import styles from '../../assets/jss/jsfiles/views/NewPost';
 
@@ -25,12 +27,14 @@ const NewPost = (props) => {
     const[content,setContent] = useState();
     const[author,setAuthor] = useState();
     const[submitted, setSubmitted] = useState(false);
+    const[tags,setTags] = useState([]);
     
     const postDataHandler = () =>{
         const post = {
             title: title,
             content: content,
             author: author,
+            tags: tags
         }
         Axios.post('https://blogit-605f1.firebaseio.com/posts.json',post).then(response =>{
 
@@ -93,6 +97,14 @@ const NewPost = (props) => {
                     
                 />
                 </div>
+                <br/>
+                <ReactTagInput 
+                tags={tags} 
+                maxTags={10}
+                placeholder="Type and press enter"
+                onChange={(newTags) => setTags(newTags)}
+                />
+                <br />
                 <CustomInput
                 labelText="Author"
                 id="float"

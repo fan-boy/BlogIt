@@ -5,6 +5,7 @@ import classNames from "classnames";
 import PropTypes from "prop-types";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
+import "../../../Components/Post/Post.css";
 // @material-ui/icons
 
 // core components
