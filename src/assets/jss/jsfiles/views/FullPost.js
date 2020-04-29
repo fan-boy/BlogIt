@@ -11,7 +11,7 @@ const fullPostPageStyle = {
     FullPost : {
         width: "80%",
         margin: "100px auto",
-        textAlign: "center"
+        textAlign: "Left"
         
     },
     ContentSizing: {
