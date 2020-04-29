@@ -5,6 +5,10 @@ const cardBodyStyle = {
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
     fontWeight: "300",
     lineHeight: "1.5em"
+  },
+  allPostPageStyle:{
+    maxHeight:"100px",
+    overflow:"hidden"
   }
 };
 

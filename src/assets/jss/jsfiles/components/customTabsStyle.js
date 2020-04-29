@@ -1,16 +1,24 @@
 const customTabsStyle = {
   cardTitle: {
-    float: "left",
     padding: "10px 10px 10px 0px",
     lineHeight: "24px",
     
   },
+  contentDivStyle:{
+    maxHeight:"150px",
+    overflow:"hidden"
+  },
+  seeMoreStyle:{
+    textAlign: "right"
+  },
+  
   cardHover: {
    
     "&:hover,&:focus": {
       zIndex: "3",
       backgroundColor: "#C0DDF5",
-      borderColor: "#ddd"
+      borderColor: "#ddd",
+      borderRadius: "6px",
     },
     "&:hover": {
       cursor: "pointer"

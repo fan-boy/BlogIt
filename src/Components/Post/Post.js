@@ -23,18 +23,22 @@ const Post = (props) => {
     [classes.cardTitle]: true,
     [classes.cardTitleRTL]: rtlActive    
   });
-  const cardHover = classNames({
-    [classes.cardHover]: hover
+  const cardStyle = classNames({
+    [classes.cardHover]: hover,
+    [classes.cardStyle]: true
   });
+  const contentDivStyle = classNames({
+    [classes.contentDivStyle]:true
+  })
     return(
 
     <Card plain = {plainTabs}>
-        <CardHeader color = {headerColor} plain = {plainTabs}>
-            {title !== undefined ? <div className={cardTitle}>{title}</div> : null}
-        </CardHeader>
-        <div onClick = {clicked} alt="Click to Open" className={cardHover}  >
+        <div onClick = {clicked} alt="Click to Open" className={cardStyle}  >
             <CardBody >
-            <div dangerouslySetInnerHTML = { { __html:content}} ></div>
+            {title !== undefined ? <div className={cardTitle}><h1>{title}</h1></div> : null}
+        
+            <div className={contentDivStyle} dangerouslySetInnerHTML = { { __html:content}} ></div>
+            <div className={classes.seeMoreStyle}>...Click on Card to See More</div>
             </CardBody>
 
             <CardFooter>
