@@ -73,7 +73,7 @@ const  Posts = (props) =>{
             displayPosts = currentPosts.map(x => {
             return( 
             //<Link to = {"/fullpost/" + x.id} key = {x.id}> 
-                <Post headerColor="warning" hover title = {x.title} content = {x.content} author = {x.author} tags = {x.tags} clicked = {() => onSelectedhandler(x.id)}/>
+                <Post headerColor="warning" hover title = {x.title} content = {x.content} author = {x.author}  clicked = {() => onSelectedhandler(x.id)}/>
               //  </Link>
               )
         })

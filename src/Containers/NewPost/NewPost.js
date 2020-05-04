@@ -98,12 +98,7 @@ const NewPost = (props) => {
                 />
                 </div>
                 <br/>
-                <ReactTagInput 
-                tags={tags} 
-                maxTags={10}
-                placeholder="Type and press enter"
-                onChange={(newTags) => setTags(newTags)}
-                />
+                
                 <br />
                 <CustomInput
                 labelText="Author"

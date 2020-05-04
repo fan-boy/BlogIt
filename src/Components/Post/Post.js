@@ -11,8 +11,6 @@ import Card from '../UiComponents/Card/Card';
 import CardBody from '../UiComponents/Card/CardBody';
 import CardHeader from '../UiComponents/Card/CardHeader';
 import CardFooter from '../UiComponents/Card/CardFooter';
-import ReactTagInput from "@pathofdev/react-tag-input";
-import "@pathofdev/react-tag-input/build/index.css";
 
 import styles from '../../assets/jss/jsfiles/components/customTabsStyle';
 
@@ -42,7 +40,6 @@ const Post = (props) => {
             <div className={contentDivStyle} dangerouslySetInnerHTML = { { __html:content}} ></div>
             <div className={classes.seeMoreStyle}>...Click on Card to See More</div>
             <br/>
-            <ReactTagInput tags={tags} editable={false} readOnly={true}/>
             </CardBody>
 
             <CardFooter>
