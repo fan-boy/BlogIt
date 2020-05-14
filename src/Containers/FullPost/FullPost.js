@@ -16,6 +16,7 @@ const useStyles = makeStyles(styles);
 const FullPost =(props) => {
     const classes = useStyles();
     const [loadedPost,setLoadedPost] = useState();
+    console.log("Full Posts");
     useEffect(() => {
         if(props.match.params.id){
             if(!loadedPost ||(loadedPost && loadedPost.id !== props.match.params.id)){

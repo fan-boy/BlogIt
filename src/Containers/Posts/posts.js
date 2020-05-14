@@ -47,6 +47,9 @@ const  Posts = (props) =>{
     const onSelectedhandler = (id) =>{
         props.history.push({pathname:'/fullpost/' +id });
     }
+    const onEditHandler = (id) =>{
+      props.history.push({pathname:'/editPost/'+id});
+    }
 
         const indexOfLastPost = currentPage * postsPerPage;
         const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -73,7 +76,11 @@ const  Posts = (props) =>{
             displayPosts = currentPosts.map(x => {
             return( 
             //<Link to = {"/fullpost/" + x.id} key = {x.id}> 
-                <Post headerColor="warning" hover title = {x.title} content = {x.content} author = {x.author}  clicked = {() => onSelectedhandler(x.id)}/>
+                <Post headerColor="warning" hover title = {x.title} 
+                content = {x.content} 
+                author = {x.author}  
+                clicked = {() => onSelectedhandler(x.id)}
+                edit = {() => onEditHandler(x.id)}/>
               //  </Link>
               )
         })

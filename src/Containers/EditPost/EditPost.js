@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {Redirect} from 'react-router-dom';
 
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 
 
-import './NewPost.css';
 import Axios from 'axios';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import CustomInput from '../../Components/UiComponents/CustomInput/CustomInput';
 import Card from '../../Components/UiComponents/Card/Card';
 import CardBody from '../../Components/UiComponents/Card/CardBody';
+import CardFooter from '../../Components/UiComponents/Card/CardFooter';
 import CustomButton from '../../Components/UiComponents/CustomButtons/Button';
 import Tags from '../../Components/UiComponents/Tags/Tags';
 import '../../Components/UiComponents/Tags/tagsInupts.css';
@@ -21,14 +21,27 @@ import styles from '../../assets/jss/jsfiles/views/NewPost';
 const useStyles = makeStyles(styles);
 
 
-const NewPost = (props) => {
+const EditPost =React.memo((props) => {
     const classes = useStyles();
     const[ title,setTitle] = useState();
     const[content,setContent] = useState();
     const[author,setAuthor] = useState();
     const[submitted, setSubmitted] = useState(false);
     const[tags,setTags] = useState([]);
-    
+    const [loadedPost,setLoadedPost] = useState();
+    useEffect(() => {
+        if(props.match.params.id){
+            if(!loadedPost ||(loadedPost && loadedPost.id !== props.match.params.id)){
+            Axios.get('https://blogit-605f1.firebaseio.com/posts/' + props.match.params.id + '.json')
+            .then(response =>{
+                 setLoadedPost(response.data);
+                 setTitle(response.data.title);
+                 setContent(response.data.content);
+                 setAuthor(response.data.author);
+            });
+        }
+        }
+    },[loadedPost,props.match.params.id])
     const postDataHandler = () =>{
         const post = {
             title: title,
@@ -52,17 +65,25 @@ const NewPost = (props) => {
         if(title && content && author){
             disabled = false
         }
-        
-        
-    
-        return (
-     
-            <div className={classes.Parent}>
-                
+
+        let post = <div className = {classes.FullPost}><p>Please select a Post!</p></div>;
+        if(props.match.params.id){
+            post = (<div className = {classes.Parent}>
+                <div className = {classes.FullPost}>   
+                <Card>
+                <CardBody>
+                ...Loading
+                </CardBody>    
+                </Card>
+                </div>
+                </div>)
+        }
+        if(loadedPost){
+        post = (
             <div className={classes.NewPost}>
                 {isSubmitted}
                 <Card >
-                <h1>Add a Post</h1>
+                <h1>Edit Post</h1>
                 <CardBody>
                 <div className = {classes.ContentSizing}>
                 <CustomInput
@@ -71,6 +92,7 @@ const NewPost = (props) => {
                 formControlProps={{
                     fullWidth: true
                   }}
+                 value = {title} 
                 changed = {(event) => setTitle(event.target.value)}
                 />
                 <label>Content</label>
@@ -78,6 +100,7 @@ const NewPost = (props) => {
                 <CKEditor
                     editor={ ClassicEditor }
                     label = "Enter Text Here"
+                    data = {content}
                     onInit={ editor => {
                         // You can store the "editor" and use when it is needed.
                         
@@ -117,9 +140,19 @@ const NewPost = (props) => {
                 </CardBody>
                 </Card>
             </div>
+            
+        );
+        }
+        
+        
+    
+        return (
+     
+            <div className={classes.Parent}>
+                {post}
             </div>
         );
-    }
+    });
 
 
-export default NewPost;
+export default EditPost;

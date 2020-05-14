@@ -3,6 +3,7 @@ import Posts from '../Posts/posts';
 import {Route , Switch} from 'react-router-dom';
 import FullPost from '../FullPost/FullPost';
 import NewPost from '../NewPost/NewPost';
+import EditPost from '../EditPost/EditPost';
 import './Blog.css';
 import Header from '../../Components/UiComponents/Header/Header';
 import HeaderLinks from '../../Components/UiComponents/Header/HeaderLinks';
@@ -40,6 +41,7 @@ class Blog extends Component {
                     <Route path ="/" component = {Posts} exact />
                     <Route path ="/newPost" component = {NewPost} exact />
                     <Route path = "/fullPost/:id" component = {FullPost} exact />
+                    <Route path = "/editPost/:id" component = {EditPost} exact />
                 </Switch>
                     
             </div>

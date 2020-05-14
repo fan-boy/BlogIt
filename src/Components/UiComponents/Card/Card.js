@@ -5,7 +5,6 @@ import classNames from "classnames";
 import PropTypes from "prop-types";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-// @material-ui/icons
 
 // core components
 import styles from "../../../assets/jss/jsfiles/components/cardStyle";
@@ -14,16 +13,24 @@ const useStyles = makeStyles(styles);
 
 export default function Card(props) {
   const classes = useStyles();
-  const { className, children, plain, carousel, ...rest } = props;
-  const cardClasses = classNames({
-    [classes.card]: true,
+  const { className, children, plain, carousel,buttons, ...rest } = props;
+  const parentCard = classNames({
+    [classes.parentCard]: true,
     [classes.cardPlain]: plain,
     [classes.cardCarousel]: carousel,
+    [classes.cardHover]:true,
     [className]: className !== undefined
   });
+  const buttonDiv = classNames({
+    [classes.cardForButtons]:true,
+    [classes.cardHover]:true
+  })
   return (
-    <div className={cardClasses} {...rest}>
+    <div className={parentCard}>
+    <div className={classes.card} {...rest}>
       {children}
+    </div>
+      {buttons}
     </div>
   );
 }

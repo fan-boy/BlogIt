@@ -16,7 +16,6 @@ const customTabsStyle = {
    
     "&:hover,&:focus": {
       zIndex: "3",
-      backgroundColor: "#C0DDF5",
       borderColor: "#ddd",
       borderRadius: "6px",
     },
