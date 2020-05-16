@@ -77,6 +77,7 @@ const  Posts = (props) =>{
             return( 
             //<Link to = {"/fullpost/" + x.id} key = {x.id}> 
                 <Post headerColor="warning" hover title = {x.title} 
+                id = {x.id}
                 content = {x.content} 
                 author = {x.author}  
                 clicked = {() => onSelectedhandler(x.id)}

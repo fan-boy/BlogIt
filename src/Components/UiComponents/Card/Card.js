@@ -18,13 +18,11 @@ export default function Card(props) {
     [classes.parentCard]: true,
     [classes.cardPlain]: plain,
     [classes.cardCarousel]: carousel,
-    [classes.cardHover]:true,
+    [classes.cardHover]:buttons,
+    [classes.cardNoButtons]:!buttons,
     [className]: className !== undefined
   });
-  const buttonDiv = classNames({
-    [classes.cardForButtons]:true,
-    [classes.cardHover]:true
-  })
+  
   return (
     <div className={parentCard}>
     <div className={classes.card} {...rest}>

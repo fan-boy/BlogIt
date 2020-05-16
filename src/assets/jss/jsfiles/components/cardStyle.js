@@ -48,6 +48,12 @@ const cardStyle = {
     }
     
   },
+  cardNoButtons:{
+    opacity:"100 !important",
+    '& span': {
+      opacity: "100 ",
+    }
+  },
   cardForButtons: {
     background: "transparent",
     boxShadow: "none",

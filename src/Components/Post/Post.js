@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {withRouter} from 'react-router-dom';
 // nodejs library that concatenates classes
 import classNames from "classnames";
@@ -34,6 +34,9 @@ const Post = (props) => {
   const contentDivStyle = classNames({
     [classes.contentDivStyle]:true
   });
+  useEffect(() => {
+    console.log("All posts");
+  },[])
   const buttons = (
     <span>
       <Button justIcon round color="transparent" clicked = {clicked}>

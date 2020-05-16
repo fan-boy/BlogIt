@@ -23,6 +23,10 @@ const useStyles = makeStyles(styles);
 
 const EditPost =React.memo((props) => {
     const classes = useStyles();
+    const {match} = props;
+    const {params} = match;
+    const {id} = params;
+
     const[ title,setTitle] = useState();
     const[content,setContent] = useState();
     const[author,setAuthor] = useState();
@@ -30,18 +34,19 @@ const EditPost =React.memo((props) => {
     const[tags,setTags] = useState([]);
     const [loadedPost,setLoadedPost] = useState();
     useEffect(() => {
-        if(props.match.params.id){
-            if(!loadedPost ||(loadedPost && loadedPost.id !== props.match.params.id)){
-            Axios.get('https://blogit-605f1.firebaseio.com/posts/' + props.match.params.id + '.json')
+        console.log("EditPost");
+        if(id){
+            
+            Axios.get('https://blogit-605f1.firebaseio.com/posts/' + id + '.json')
             .then(response =>{
                  setLoadedPost(response.data);
                  setTitle(response.data.title);
                  setContent(response.data.content);
                  setAuthor(response.data.author);
             });
+        
         }
-        }
-    },[loadedPost,props.match.params.id])
+    },[id])
     const postDataHandler = () =>{
         const post = {
             title: title,
@@ -79,6 +84,7 @@ const EditPost =React.memo((props) => {
                 </div>)
         }
         if(loadedPost){
+            
         post = (
             <div className={classes.NewPost}>
                 {isSubmitted}

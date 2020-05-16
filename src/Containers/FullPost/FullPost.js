@@ -28,7 +28,7 @@ const FullPost =(props) => {
         }
     },[loadedPost,props.match.params.id])
     
-    
+        console.log("FullPost");
         let post = <div className = {classes.FullPost}><p>Please select a Post!</p></div>;
         if(props.match.params.id){
             post = (<div className = {classes.Parent}>
@@ -45,6 +45,7 @@ const FullPost =(props) => {
         post = (
             <div className = {classes.Parent}>
             <div className = {classes.FullPost}>   
+            
             <Card>
             <CardBody>
             <h1>{loadedPost.title}</h1>
